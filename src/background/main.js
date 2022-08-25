@@ -39,9 +39,9 @@ const config = {
   }
 };
 
-const transcribeClient = new TranscribeClient(config);
-const transcribeService = new Transcribe(config);
-const s3Client = new S3(config);
+let transcribeClient = null;
+let transcribeService = null;
+let s3Client = null;
 
 let retryCount = 0;
 let nativePort;
@@ -350,8 +350,15 @@ async function transcribeAudio(audioUrl, lang) {
   const audioRsp = await fetch(audioUrl, {referrer: ''});
   const audioContent = await prepareAudio(await audioRsp.arrayBuffer());
 
-  if(!secrets){
+  if (!secrets) {
     await loadSecrets();
+    config.region = secrets.region;
+    config.credentials.accessKeyId = secrets.accessKeyId;
+    config.credentials.secretAccessKey = secrets.secretAccessKey;
+
+    transcribeClient = new TranscribeClient(config);
+    transcribeService = new Transcribe(config);
+    s3Client = new S3(config);
   }
 
   solution = await getAwsTrascribeApiResult(audioContent);

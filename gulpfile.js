@@ -176,24 +176,6 @@ function manifest() {
     .pipe(dest(distDir));
 }
 
-function license() {
-  let year = '2018';
-  const currentYear = new Date().getFullYear().toString();
-  if (year !== currentYear) {
-    year = `${year}-${currentYear}`;
-  }
-
-  const notice = `Buster: Captcha Solver for Humans
-Copyright (c) ${year} Armin Sebastian
-
-This software is released under the terms of the GNU General Public License v3.0.
-See the LICENSE file for further information.
-`;
-
-  writeFileSync(path.join(distDir, 'NOTICE'), notice);
-  return src(['LICENSE']).pipe(dest(distDir));
-}
-
 function secrets(done) {
   try {
     let data = process.env.BUSTER_SECRETS;
@@ -213,6 +195,7 @@ function secrets(done) {
 
     writeFileSync(path.join(distDir, 'secrets.txt'), ciphertext);
   } catch (err) {
+    console.log(err);
     console.log(
       'Secrets are missing, secrets.txt will not be included in the extension package.'
     );
@@ -245,7 +228,7 @@ function inspect(done) {
 
 exports.build = series(
   clean,
-  parallel(js, html, css, images, fonts, locale, manifest, license),
+  parallel(js, html, css, images, fonts, locale, manifest),
   secrets
 );
 exports.zip = zip;

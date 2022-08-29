@@ -471,15 +471,6 @@ async function onInstall(details) {
         }
       }
     }
-
-    const setupTabs = await browser.tabs.query({
-      url: 'http://127.0.0.1/buster/setup?session=*',
-      windowType: 'normal'
-    });
-
-    for (const tab of setupTabs) {
-      await browser.tabs.reload(tab.id);
-    }
   }
 }
 

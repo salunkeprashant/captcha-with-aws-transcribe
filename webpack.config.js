@@ -2,7 +2,6 @@ const path = require('path');
 
 const webpack = require('webpack');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const targetEnv = process.env.TARGET_ENV || 'firefox';
@@ -15,7 +14,6 @@ let plugins = [
     },
     global: {}
   }),
-  new VueLoaderPlugin(),
   new MiniCssExtractPlugin({
     filename: '[name]/style.css'
   }),
@@ -27,10 +25,7 @@ module.exports = {
   mode: isProduction ? 'production' : 'development',
   entry: {
     background: './src/background/main.js',
-    options: './src/options/main.js',
-    contribute: './src/contribute/main.js',
-    solve: './src/solve/main.js',
-    setup: './src/setup/main.js'
+    solve: './src/solve/main.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist', targetEnv, 'src'),
@@ -39,18 +34,6 @@ module.exports = {
   optimization: {
     runtimeChunk: {
       name: 'manifest'
-    },
-    splitChunks: {
-      cacheGroups: {
-        default: false,
-        commonsUi: {
-          name: 'commons-ui',
-          chunks: chunk => {
-            return ['options', 'contribute', 'setup'].includes(chunk.name);
-          },
-          minChunks: 2
-        }
-      }
     }
   },
   module: {
@@ -58,17 +41,6 @@ module.exports = {
       {
         test: /\.js$/,
         use: 'babel-loader'
-      },
-      {
-        test: /\.vue$/,
-        use: [
-          {
-            loader: 'vue-loader',
-            options: {
-              transformAssetUrls: {img: ''}
-            }
-          }
-        ]
       },
       {
         test: /\.(c|sc|sa)ss$/,

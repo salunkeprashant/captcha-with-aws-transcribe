@@ -151,7 +151,6 @@ function manifest() {
         edit: (parsedJson, file) => {
           if (['chrome', 'edge', 'opera'].includes(targetEnv)) {
             delete parsedJson.browser_specific_settings;
-            delete parsedJson.options_ui.browser_style;
           }
 
           if (['chrome', 'edge', 'firefox'].includes(targetEnv)) {
@@ -163,7 +162,6 @@ function manifest() {
           }
 
           if (targetEnv === 'firefox') {
-            delete parsedJson.options_ui.chrome_style;
             delete parsedJson.incognito;
           }
 

@@ -3,18 +3,10 @@
   "name": "__MSG_extensionName__",
   "description": "__MSG_extensionDescription__",
   "version": "0.1.0",
-  "author": "Armin Sebastian",
-  "homepage_url": "https://github.com/dessant/buster",
+  "author": "Prashant Salunke",
+  "homepage_url": "https://github.com/salunkeprashant",
   "default_locale": "en",
-
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "{e58d3966-3d76-4cd9-8552-1582fbc800c1}",
-      "strict_min_version": "68.0"
-    }
-  },
   "minimum_chrome_version": "76.0",
-  "minimum_opera_version": "63.0",
 
   "permissions": [
     "storage",

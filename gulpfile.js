@@ -76,14 +76,6 @@ async function images(done) {
         .on('finish', resolve);
     });
   }
-
-  await new Promise(resolve => {
-    src('node_modules/ext-contribute/src/assets/*.@(jpg|png|svg)')
-      .pipe(gulpif(isProduction, imagemin()))
-      .pipe(dest(path.join(distDir, 'src/contribute/assets')))
-      .on('error', done)
-      .on('finish', resolve);
-  });
 }
 
 async function fonts(done) {

@@ -5,7 +5,7 @@
   },
 
   "extensionDescription": {
-    "message": "Save time by asking Decaptcha to solve captchas for you.",
+    "message": "Resolve captcha with AWS transcribe",
     "description": "Description of the extension."
   },
 

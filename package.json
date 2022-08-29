@@ -45,7 +45,6 @@
     "bowser": "^2.11.0",    
     "core-js": "^3.6.5",
     "crypto-js": "^4.0.0",
-    "storage-versions": "github:dessant/storage-versions",
     "uuid": "^8.3.1",
     "webextension-polyfill": "^0.6.0"
   },

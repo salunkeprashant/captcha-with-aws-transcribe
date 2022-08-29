@@ -4,11 +4,10 @@ import aes from 'crypto-js/aes';
 import sha256 from 'crypto-js/sha256';
 import utf8 from 'crypto-js/enc-utf8';
 
-import {initStorage} from 'storage/init';
+import {initStorage} from 'storage/storage';
 import storage from 'storage/storage';
 import {
   showNotification,
-  showContributePage,
   sendNativeMessage
 } from 'utils/app';
 import {
@@ -383,9 +382,6 @@ async function onMessage(request, sender) {
     let {useCount} = await storage.get('useCount', 'sync');
     useCount += 1;
     await storage.set({useCount}, 'sync');
-    if ([30, 100].includes(useCount)) {
-      await showContributePage('use');
-    }
   } else if (request.id === 'transcribeAudio') {
     addBackgroundRequestListener();
     try {
@@ -475,7 +471,7 @@ async function onInstall(details) {
 }
 
 async function onLoad() {
-  await initStorage('sync');
+  await initStorage('local');
   await setChallengeLocale();
   addStorageListener();
   addMessageListener();

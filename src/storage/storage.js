@@ -34,5 +34,10 @@ async function clear(area = 'local') {
   return browser.storage[area].clear();
 }
 
+async function initStorage(area = 'local') {
+  return await getSupportedArea(area);
+}
+
+export {initStorage};
 export default {get, set, remove, clear};
 export {getSupportedArea};

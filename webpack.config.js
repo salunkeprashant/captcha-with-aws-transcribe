@@ -62,7 +62,7 @@ module.exports = {
   },
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    extensions: ['.js', '.json', '.css', '.scss', '.vue']
+    extensions: ['.js', '.json', '.css', '.scss']
   },
   devtool: isProduction && targetEnv !== 'opera' ? 'source-map' : false,
   plugins

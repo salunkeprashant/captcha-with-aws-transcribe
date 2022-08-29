@@ -55,15 +55,6 @@ function getOptionLabels(data, scope = 'optionValue') {
   return labels;
 }
 
-async function showContributePage(action = false) {
-  const activeTab = await getActiveTab();
-  let url = browser.extension.getURL('/src/contribute/index.html');
-  if (action) {
-    url = `${url}?action=${action}`;
-  }
-  await createTab(url, {index: activeTab.index + 1});
-}
-
 function meanSleep(ms) {
   const maxDeviation = 0.1 * ms;
   return sleep(getRandomInt(ms - maxDeviation, ms + maxDeviation));
@@ -130,7 +121,6 @@ async function pingClientApp({
 export {
   showNotification,
   getOptionLabels,
-  showContributePage,
   meanSleep,
   sendNativeMessage,
   pingClientApp

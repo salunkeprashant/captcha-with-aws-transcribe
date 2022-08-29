@@ -14,16 +14,6 @@
     "description": "Title of the options section."
   },
 
-  "optionTitle_speechService": {
-    "message": "Speech service",
-    "description": "Title of the option."
-  },
-
-  "optionValue_speechService_awsTranscribe": {
-    "message": "AWS Transcribe Speech-to-Text",
-    "description": "Value of the option."
-  },
-
   "optionSectionTitle_client": {
     "message": "Client app",
     "description": "Title of the options section."

@@ -247,10 +247,6 @@ async function loadSecrets() {
     secrets = JSON.parse(aes.decrypt(ciphertext, key).toString(utf8));
   } catch (err) {
     secrets = {};
-    const {speechService} = await storage.get('speechService', 'sync');
-    if (speechService === 'witSpeechApiDemo') {
-      await storage.set({speechService: 'witSpeechApi'}, 'sync');
-    }
   }
 }
 

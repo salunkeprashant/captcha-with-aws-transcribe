@@ -106,10 +106,7 @@ async function locale(done) {
     const localePath = path.join(localesRootDir, localeDir);
     await new Promise(resolve => {
       src(
-        [
-          path.join(localePath, 'messages.json'),
-          path.join(localePath, `messages-${targetEnv}.json`)
-        ],
+        [path.join(localePath, 'messages.json')],
         {allowEmpty: true}
       )
         .pipe(

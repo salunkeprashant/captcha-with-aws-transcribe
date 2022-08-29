@@ -1,5 +1,5 @@
 const targetEnv = process.env.TARGET_ENV;
 
-const clientAppVersion = '0.3.0';
+const clientAppVersion = '1.0.0';
 
 export {targetEnv, clientAppVersion};
